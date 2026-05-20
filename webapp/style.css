@@ -1,0 +1,338 @@
+/* ═══════════════════════════════════════════
+   PayRonin Mini App — Dark Theme
+   ═══════════════════════════════════════════ */
+
+:root {
+  --bg: #0f0f0f;
+  --bg-card: #1a1a2e;
+  --bg-card-hover: #222244;
+  --bg-input: #16213e;
+  --accent: #6c5ce7;
+  --accent-light: #a29bfe;
+  --accent-glow: rgba(108, 92, 231, 0.3);
+  --green: #00cec9;
+  --yellow: #fdcb6e;
+  --red: #ff6b6b;
+  --text: #eee;
+  --text-dim: #888;
+  --text-muted: #555;
+  --border: #2d2d44;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Навигация (tabs) ───────────────────── */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111122;
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px 8px;
+  font-size: 10px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color .2s;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nav-item.active { color: var(--accent-light); }
+.nav-item .icon { font-size: 22px; margin-bottom: 2px; }
+
+/* ── Скрины ─────────────────────────────── */
+.screen { display: none; padding: 16px; animation: fadeIn .25s; }
+.screen.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ─────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 12px 0 20px;
+}
+.header h1 { font-size: 20px; font-weight: 700; }
+.header p { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
+
+/* ── Баланс-карточка ────────────────────── */
+.balance-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.balance-label { font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.balance-amount {
+  font-size: 42px;
+  font-weight: 800;
+  margin: 8px 0;
+  background: linear-gradient(135deg, var(--yellow), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+.balance-sub { font-size: 12px; color: var(--text-muted); }
+
+/* ── Кнопки ─────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+  width: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:active { background: #5a4bd6; transform: scale(0.97); }
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:active { background: var(--bg-card-hover); }
+.btn-sm { padding: 8px 16px; font-size: 13px; width: auto; }
+.btn-block { width: 100%; }
+
+/* ── Карточки услуг ─────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+}
+.service-card:active {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  transform: scale(0.97);
+}
+.service-card .emoji { font-size: 32px; margin-bottom: 8px; }
+.service-card .name { font-size: 13px; font-weight: 600; }
+.service-card .price-tag {
+  font-size: 11px;
+  color: var(--yellow);
+  margin-top: 4px;
+}
+
+/* ── Список ─────────────────────────────── */
+.list-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.list-item .emoji { font-size: 24px; flex-shrink: 0; }
+.list-item .info { flex: 1; }
+.list-item .info .title { font-size: 14px; font-weight: 600; }
+.list-item .info .sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+.list-item .price { font-size: 14px; font-weight: 700; color: var(--yellow); white-space: nowrap; }
+
+/* ── Пакеты пополнения ──────────────────── */
+.topup-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all .2s;
+}
+.topup-card:active {
+  border-color: var(--accent);
+  transform: scale(0.98);
+}
+.topup-left .topup-amount { font-size: 18px; font-weight: 700; }
+.topup-left .topup-bonus {
+  font-size: 12px;
+  color: var(--green);
+  margin-top: 2px;
+}
+.topup-right {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ── Выбор срока ────────────────────────── */
+.duration-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+.dur-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.dur-btn.selected {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+}
+.dur-btn .dur-label { font-size: 13px; font-weight: 600; }
+.dur-btn .dur-price { font-size: 11px; color: var(--yellow); margin-top: 2px; }
+
+/* ── Input ──────────────────────────────── */
+.input-group { margin: 16px 0; }
+.input-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.input-group input, .input-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s;
+}
+.input-group input:focus, .input-group textarea:focus {
+  border-color: var(--accent);
+}
+
+/* ── Секции ─────────────────────────────── */
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin: 20px 0 10px;
+}
+
+/* ── Пустое состояние ───────────────────── */
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+.empty .icon { font-size: 48px; margin-bottom: 12px; }
+.empty p { font-size: 14px; }
+
+/* ── Toast уведомления ──────────────────── */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  font-size: 14px;
+  z-index: 200;
+  transition: transform .3s;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { border-color: var(--green); }
+.toast.error { border-color: var(--red); }
+
+/* ── Скелетон загрузки ──────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+  height: 20px;
+  margin-bottom: 8px;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Лоадер ─────────────────────────────── */
+.loader {
+  text-align: center;
+  padding: 40px;
+}
+.loader .spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 0 auto 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
