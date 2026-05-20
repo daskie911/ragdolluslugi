@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PayRonin</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/webapp/style.css?v=2">
+</head>
+<body>
+
+  <div class="screen active" id="screen-home">
+    <div class="loader"><div class="spinner"></div><p style="color:var(--text-dim)">Загрузка...</p></div>
+  </div>
+
+  <div class="screen" id="screen-services">
+    <div class="header"><h1>🛒 Все услуги</h1><p>Выберите услугу для покупки</p></div>
+    <div id="services-list"></div>
+  </div>
+
+  <div class="screen" id="screen-topup">
+    <div class="header"><h1>💰 Пополнение</h1><p>Оплата через Telegram Stars</p></div>
+    <div class="balance-card" style="margin-bottom:16px">
+      <div class="balance-label">Текущий баланс</div>
+      <div class="balance-amount" id="topup-balance">— ⭐</div>
+    </div>
+    <div class="section-title">Выберите пакет</div>
+    <div id="topup-list"></div>
+  </div>
+
+  <div class="screen" id="screen-history">
+    <div class="header"><h1>📜 Мои покупки</h1><p>История ваших заказов</p></div>
+    <div id="history-list"></div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-item active" data-screen="home"><span class="icon">🏠</span>Главная</div>
+    <div class="nav-item" data-screen="services"><span class="icon">🛒</span>Услуги</div>
+    <div class="nav-item" data-screen="topup"><span class="icon">💰</span>Баланс</div>
+    <div class="nav-item" data-screen="history"><span class="icon">📜</span>История</div>
+  </div>
+
+  <script src="/webapp/app.js?v=2"></script>
+</body>
+</html>
